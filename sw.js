@@ -6,7 +6,7 @@ const ASSETS = [
   './qrcode.min.js',
   './manifest.json',
   './logo_udemedellin2.png',
-  './assets/estudiante.jpg',
+  './assets/estudiante.PNG',
   './assets/estudiante_mujer.jpg',
   './valentina/index.html'
 ];
