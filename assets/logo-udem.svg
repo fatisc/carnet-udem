@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100">
+  <!-- Shield / Escudo -->
+  <g transform="translate(10, 5)">
+    <circle cx="40" cy="45" r="38" fill="#4EAFA5" opacity="0.15" stroke="#4EAFA5" stroke-width="2"/>
+    <circle cx="40" cy="45" r="32" fill="white" stroke="#4EAFA5" stroke-width="1.5"/>
+    <!-- Simplified shield -->
+    <path d="M25 28 L40 22 L55 28 L55 50 Q55 62 40 68 Q25 62 25 50 Z" 
+          fill="none" stroke="#1a3a6a" stroke-width="1.5"/>
+    <path d="M25 28 L40 22 L55 28 L55 36 L25 36 Z" fill="#E74C3C" opacity="0.9"/>
+    <path d="M25 36 L55 36 L55 44 L25 44 Z" fill="#F4D03F" opacity="0.9"/>
+    <path d="M25 44 L55 44 L55 50 Q55 62 40 68 Q25 62 25 50 Z" fill="#1a3a6a" opacity="0.8"/>
+    <!-- Book symbol -->
+    <rect x="35" y="48" width="10" height="14" rx="1" fill="white" opacity="0.8"/>
+    <line x1="40" y1="48" x2="40" y2="62" stroke="#1a3a6a" stroke-width="0.5"/>
+  </g>
+  
+  <!-- University Name -->
+  <g transform="translate(95, 20)">
+    <text font-family="-apple-system, Arial, sans-serif" font-size="24" font-weight="800" fill="#1a3a6a">
+      <tspan x="0" dy="0">Universidad</tspan>
+      <tspan x="0" dy="28" font-size="24" font-weight="800">de Medellín</tspan>
+    </text>
+    <!-- Registered mark -->
+    <text font-family="-apple-system, Arial, sans-serif" font-size="10" fill="#1a3a6a" x="175" y="0">®</text>
+    <!-- Slogan -->
+    <text font-family="-apple-system, Arial, sans-serif" font-size="12" fill="#4EAFA5" font-style="italic" font-weight="600">
+      <tspan x="0" dy="48">Ciencia y Libertad</tspan>
+    </text>
+  </g>
+</svg>

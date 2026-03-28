@@ -1,0 +1,493 @@
+/* ============================================
+   CARNET VIRTUAL - Universidad de Medellín
+   PWA Styles  v3
+   ============================================ */
+
+:root {
+  --primary: #4EAFA5;
+  --primary-dark: #3D9A91;
+  --accent: #7B1F2E;
+  --white: #ffffff;
+  --bg: #f5f5f5;
+  --text-dark: #1a1a1a;
+  --text-gray: #666;
+  --nav-height: 72px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  padding-top: var(--safe-top);
+  padding-bottom: var(--safe-bottom);
+}
+
+#app {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ============ TAB CONTENT ============ */
+.tab-content {
+  display: none;
+  padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 10px);
+}
+.tab-content.active { display: block; }
+
+/* Halftone dot pattern — top-right and bottom-left corners */
+#tab-carnet {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+#tab-carnet::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, #b0b0b0 3px, transparent 3px);
+  background-size: 18px 18px;
+  -webkit-mask-image:
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgba(0,0,0,0.75) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 0% 100%, rgba(0,0,0,0.55) 0%, transparent 100%);
+  -webkit-mask-composite: source-over;
+  mask-image:
+    radial-gradient(ellipse 70% 55% at 100% 0%, rgba(0,0,0,0.75) 0%, transparent 100%),
+    radial-gradient(ellipse 75% 70% at 0% 100%, rgba(0,0,0,0.55) 0%, transparent 100%);
+  mask-composite: add;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ CARNET TAB ============ */
+.carnet-container {
+  text-align: center;
+  padding: 20px 16px 10px;
+  background: transparent;
+  position: relative;
+}
+
+/* Ensure content sits above the pattern */
+.carnet-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+.university-logo { margin-bottom: 8px; }
+.logo-img { height: 65px; width: auto; }
+
+/* === Timer bar: UNA sola barra continua === */
+.timer-bar {
+  width: 220px;
+  height: 4px;
+  border-radius: 2px;
+  background: #d5d5d5;
+  margin: 6px auto 18px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.timer-bar.visible {
+  opacity: 1;
+}
+.timer-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.15s linear;
+}
+
+/* === Carousel === */
+.carousel {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+}
+.slide.active {
+  display: flex;
+  position: relative;
+}
+
+/* Floating animation */
+.slide.float-in {
+  animation: floatIn 0.45s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+.slide.float-out {
+  animation: floatOut 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes floatIn {
+  0%   { opacity: 0; transform: translateY(30px) scale(0.96); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes floatOut {
+  0%   { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-20px) scale(0.96); }
+}
+
+/* === Slide 1: Foto en Óvalo === */
+.photo-oval-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-oval-border {
+  width: 320px;
+  height: 290px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--accent);
+  box-shadow: 0 8px 32px rgba(123,31,46,0.15);
+  background: #f5eaed;
+}
+
+.student-photo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* QR icon button */
+.qr-icon-btn {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: none;
+  padding: 8px;
+  border-radius: 16px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 5;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.qr-icon-btn:active {
+  transform: translateX(-50%) scale(0.92);
+}
+
+/* === Slide 2: QR grande === */
+.qr-large-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.qr-large-card {
+  background: white;
+  padding: 20px;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
+.qr-large-card img {
+  display: block;
+  width: 240px;
+  height: 240px;
+}
+
+.qr-avatar-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--accent);
+  overflow: hidden;
+  background: #eee;
+  margin-top: -28px;
+  z-index: 5;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+.avatar-mini-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Carousel arrows */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.92);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 17px;
+  color: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  z-index: 10;
+  transition: transform 0.2s;
+}
+.carousel-arrow:active { transform: translateY(-50%) scale(0.9); }
+.arrow-left { left: 4px; }
+.arrow-right { right: 4px; }
+
+/* Student info */
+.student-info { margin-top: 28px; }
+.student-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--text-dark);
+}
+.student-id {
+  font-size: 1.05rem;
+  color: var(--text-gray);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+/* Role badge */
+.role-badge {
+  margin-top: 14px;
+  background: var(--accent);
+  color: white;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+/* Barcode */
+.barcode-container { margin-top: 18px; padding: 8px 0 4px; }
+.barcode-container canvas { max-width: 280px; height: 55px; }
+
+/* ============ U VIRTUAL TAB ============ */
+.uvirtual-header {
+  background: var(--primary);
+  color: white;
+  padding: 14px 0 12px;
+  text-align: center;
+  padding-top: calc(var(--safe-top) + 14px);
+}
+.uvirtual-header h1 { font-size: 1.15rem; font-weight: 600; }
+
+.uvirtual-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 12px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+.toolbar-right { display: flex; gap: 12px; margin-left: auto; align-items: center; }
+.icon-btn { background: none; border: none; color: #555; cursor: pointer; padding: 4px; }
+
+.notification-icon { position: relative; }
+.notification-icon svg { color: #555; }
+.badge {
+  position: absolute; top: -6px; right: -8px;
+  background: #E74C3C; color: white; font-size: 10px;
+  padding: 2px 5px; border-radius: 10px; font-weight: 700;
+  min-width: 18px; text-align: center;
+}
+
+.avatar-toolbar-wrap { display: flex; align-items: center; gap: 2px; }
+.avatar-placeholder-sm {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: #ddd; border: 1px solid #ccc;
+}
+
+.mini-toggle { position: relative; display: inline-block; width: 36px; height: 20px; }
+.mini-toggle input { opacity: 0; width: 0; height: 0; }
+.mini-toggle-slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background: #ccc; border-radius: 20px; transition: 0.3s;
+}
+.mini-toggle-slider::before {
+  content: ""; position: absolute; height: 16px; width: 16px;
+  left: 2px; bottom: 2px; background: white; border-radius: 50%; transition: 0.3s;
+}
+.mini-toggle input:checked + .mini-toggle-slider { background: var(--primary); }
+.mini-toggle input:checked + .mini-toggle-slider::before { transform: translateX(16px); }
+
+.uvirtual-banner {
+  margin: 16px; border-radius: 12px; overflow: hidden;
+  background: linear-gradient(135deg, #0f2b34 0%, #1a4a54 50%, #2a7a6a 100%);
+  min-height: 110px; position: relative; display: flex;
+}
+.banner-overlay { padding: 16px; color: white; flex: 1; }
+.banner-sub { font-size: 0.72rem; opacity: 0.85; }
+.banner-title { font-size: 0.95rem; font-weight: 700; margin-top: 4px; line-height: 1.3; }
+.banner-date {
+  display: inline-block; margin-top: 8px; background: var(--primary);
+  color: white; padding: 3px 10px; border-radius: 4px; font-size: 0.72rem; font-weight: 600;
+}
+.banner-cta {
+  position: absolute; bottom: 10px; right: 12px;
+  font-size: 0.65rem; color: rgba(255,255,255,0.7); cursor: pointer;
+}
+
+.banner-dots { display: flex; justify-content: center; gap: 6px; margin: -4px 0 12px; }
+.bdot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; }
+.bdot.active { background: var(--primary); }
+
+.search-bar { display: flex; margin: 0 16px 16px; gap: 8px; }
+.search-input {
+  flex: 1; padding: 12px 16px; border: 1.5px solid #ddd;
+  border-radius: 8px; font-size: 0.95rem; outline: none; background: #fafafa;
+}
+.search-input:focus { border-color: var(--primary); }
+.search-btn {
+  padding: 12px 20px; background: var(--primary); color: white;
+  border: none; border-radius: 8px; font-weight: 600; cursor: pointer;
+}
+.search-btn:active { background: var(--primary-dark); }
+
+.course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 0 16px 16px; }
+.course-card { text-align: center; padding: 18px 10px; }
+.course-icon {
+  width: 80px; height: 80px; border-radius: 50%;
+  margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;
+}
+.course-icon.competencias { background: #e8f5f3; }
+.course-icon.tic { background: #fde8e8; }
+.course-icon.catalogo { background: #e8f0fd; }
+.course-icon.tutoriales { background: #f0e8fd; }
+.course-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 3px; line-height: 1.3; }
+.course-card p { font-size: 0.78rem; color: var(--text-gray); }
+
+/* ============ OPCIONES TAB ============ */
+.opciones-header {
+  background: var(--primary); color: white;
+  padding: 22px 0 18px; text-align: center;
+  padding-top: calc(var(--safe-top) + 22px);
+}
+.opciones-header h1 { font-size: 1.35rem; font-weight: 600; }
+.opciones-content { padding: 20px 16px; }
+
+.profile-section { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+.profile-photo-ring {
+  width: 120px; height: 120px; border-radius: 50%; overflow: hidden;
+  border: 3px solid #222; flex-shrink: 0; background: #f0f0f0;
+}
+.profile-photo { width: 100%; height: 100%; object-fit: cover; }
+.profile-info h2 { font-size: 1.15rem; font-weight: 800; letter-spacing: 0.3px; }
+.profile-id { color: var(--text-gray); font-size: 1.15rem; margin-top: 6px; font-weight: 500; }
+
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.option-card {
+  text-align: center; padding: 40px 10px; display: flex;
+  flex-direction: column; align-items: center; gap: 12px;
+  cursor: pointer; border-radius: 12px; transition: background 0.2s;
+}
+.option-card:active { background: #f0f0f0; }
+.option-card span { font-size: 0.88rem; font-weight: 600; color: var(--text-dark); line-height: 1.3; }
+
+.toggle-switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.toggle-switch input { opacity: 0; width: 0; height: 0; }
+.toggle-slider {
+  position: absolute; cursor: pointer; inset: 0;
+  background: #ccc; border-radius: 24px; transition: 0.3s;
+}
+.toggle-slider::before {
+  content: ""; position: absolute; height: 18px; width: 18px;
+  left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: 0.3s;
+}
+.toggle-switch input:checked + .toggle-slider { background: var(--primary); }
+.toggle-switch input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+.version-area { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; margin-top: 36px; padding: 0 8px; }
+.version-area .version-text { justify-self: start; }
+.version-area .id-card-icon { justify-self: center; }
+.version-text { font-size: 0.85rem; color: #aaa; }
+.id-card-icon {
+  width: 64px; height: 64px; border-radius: 16px;
+  background: #fce8ea; display: flex; align-items: center; justify-content: center;
+}
+
+/* ============ BOTTOM NAV ============ */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 430px;
+  display: flex;
+  align-items: center;
+  background: white;
+  border-top: 1px solid #e8e8e8;
+  padding: 6px 8px;
+  padding-bottom: calc(6px + var(--safe-bottom));
+  z-index: 100;
+  height: auto;
+  gap: 6px;
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 4px;
+  border-radius: 18px;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-btn.active {
+  color: white;
+  background: var(--primary);
+  box-shadow: 0 4px 16px rgba(78,175,165,0.35);
+}
+
+.nav-btn:not(.active):active { background: #f5f5f5; }
+.nav-btn svg { width: 22px; height: 22px; }
+.nav-btn span { font-size: 0.72rem; letter-spacing: 0.3px; }
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 375px) {
+  .photo-oval-border { width: 280px; height: 250px; }
+  .student-name { font-size: 1rem; }
+}
+
+@media (min-width: 431px) {
+  #app {
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+    border-radius: 24px;
+    margin-top: 20px; margin-bottom: 20px;
+  }
+  .bottom-nav { border-radius: 0 0 24px 24px; }
+}
+
+html { overscroll-behavior-y: contain; }

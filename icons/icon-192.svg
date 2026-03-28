@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="40" fill="#4EAFA5"/>
+  <g transform="translate(96,96)">
+    <!-- Card shape -->
+    <rect x="-55" y="-65" width="110" height="130" rx="10" fill="white" opacity="0.95"/>
+    <!-- Photo circle -->
+    <circle cx="0" cy="-20" r="28" fill="#f0e8ea" stroke="#7B1F2E" stroke-width="3"/>
+    <!-- Person silhouette -->
+    <circle cx="0" cy="-27" r="10" fill="#cbbbbf"/>
+    <path d="M-15 -8 Q-15 -18 0 -20 Q15 -18 15 -8 L15 5 L-15 5 Z" fill="#cbbbbf"/>
+    <!-- Name lines -->
+    <rect x="-35" y="16" width="70" height="5" rx="2.5" fill="#333" opacity="0.7"/>
+    <rect x="-25" y="26" width="50" height="4" rx="2" fill="#999" opacity="0.5"/>
+    <!-- Role bar -->
+    <rect x="-55" y="38" width="110" height="18" fill="#7B1F2E"/>
+    <text x="0" y="51" text-anchor="middle" font-family="Arial" font-size="10" fill="white" font-weight="700">ESTUDIANTE</text>
+    <!-- QR hint -->
+    <rect x="-8" y="-4" width="16" height="16" rx="2" fill="white" stroke="#333" stroke-width="1"/>
+    <rect x="-5" y="-1" width="4" height="4" fill="#333"/>
+    <rect x="1" y="-1" width="4" height="4" fill="#333"/>
+    <rect x="-5" y="5" width="4" height="4" fill="#333"/>
+  </g>
+</svg>
